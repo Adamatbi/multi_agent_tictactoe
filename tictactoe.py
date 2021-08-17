@@ -11,7 +11,7 @@ class TicTacToe:
         self.__current_turn=1
 
     def display(self,_return = False):
-
+        "prints or returns text based representation of board"
         if _return: return_string = ''
         for row in range(self.__size):
             line=''
@@ -26,6 +26,7 @@ class TicTacToe:
         if _return: return return_string
 
     def move(self,player,position):
+        "validates position and updates board"
         #check move is legal
         assert position[0]<self.__size, 'ERROR: position [{}][{}] is off of the board'.format(str(position[0]),str(position[1]))
         assert position[1]<self.__size, 'ERROR: position [{}][{}] is off of the board'.format(str(position[0]),str(position[1]))
@@ -38,23 +39,15 @@ class TicTacToe:
         return self.__check_state()
 
     def __check_state(self):
-
+        "searches for winner or tie"
         #check vertical and horiz lines
         for i in range(self.__size):
-            if np.all(self.__board[0,i]==self.__board[:,i]) and self.__board[0,i] != 0: 
-
-                return self.__board[0,i]
-            if np.all(self.__board[i,0]==self.__board[i,:]) and self.__board[i,0] != 0: 
-
-                return self.__board[i,0]
+            if np.all(self.__board[0,i]==self.__board[:,i]) and self.__board[0,i] != 0: return self.__board[0,i]
+            if np.all(self.__board[i,0]==self.__board[i,:]) and self.__board[i,0] != 0: return self.__board[i,0]
             
         #check diagonals
-        if len(set([self.__board[i][i] for i in range(self.__size)]))==1 and self.__board[0,0]!=0: 
-
-            return self.__board[0,0]
-        if len(set([self.__board[i][self.__size-1-i] for i in range(self.__size)]))==1 and self.__board[0,-1]!=0: 
-
-            return self.__board[0,-1]
+        if len(set([self.__board[i][i] for i in range(self.__size)]))==1 and self.__board[0,0]!=0: return self.__board[0,0]
+        if len(set([self.__board[i][self.__size-1-i] for i in range(self.__size)]))==1 and self.__board[0,-1]!=0: return self.__board[0,-1]
 
         #check for full board
         if self.__move_num==self.__size**2: return 3

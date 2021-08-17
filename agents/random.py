@@ -6,6 +6,7 @@ class Random:
         pass
 
     def make_move(self,game):
+        "makes random move from all open spaces"
         board = game.get_board()
         open_spots = np.where(board==0)
         rand_spot = random.randrange(len(open_spots[0]))

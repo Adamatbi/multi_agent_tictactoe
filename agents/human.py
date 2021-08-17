@@ -3,6 +3,7 @@ class Human:
         pass
 
     def make_move(self,game):
+        "takes input from user"
         game.display()
         size = game.get_size()
         while True:
