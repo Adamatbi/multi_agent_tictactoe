@@ -3,7 +3,7 @@ import copy
 import random
 import numpy as np
 
-class Heuristic:
+class Simple_Strategy:
     def __init__(self,verbose=False):
         self.__verbose = verbose
 
