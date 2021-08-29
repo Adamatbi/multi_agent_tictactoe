@@ -30,5 +30,9 @@ class Arena:
             else: result = game.move(2,self.__agent_2.make_move(game))
             turn1 = not turn1
             if result is not None:
+                if result ==1:
+                    print('LOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS')
+                    game.display()
+                    #DEBUGGING CODE
                 return result
 
