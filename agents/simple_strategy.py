@@ -17,6 +17,7 @@ class Simple_Strategy:
         board = game.get_board()
         self.__size = game.get_size()
         self.__ident = game.get_current_turn()
+        self.__move_num = game.get_num_move()
         one_aways = self.check_one_aways(board)
 
         #check if there is winning move and play it
@@ -50,6 +51,11 @@ class Simple_Strategy:
         if len(single_winning)>0:
             self.__verbose_print('created single winning')
             return single_winning[0]
+
+        #play in corner for first move
+        if self.__move_num <=1:
+            avail_corner = [move for move in [(0,0),(0,self.__size-1),(self.__size-1,0),(self.__size-1,self.__size-1)] if board[move[0],move[1]]==0]
+            return random.choice(avail_corner)
 
         #return random valid move
         return random.choice(open_pos) 

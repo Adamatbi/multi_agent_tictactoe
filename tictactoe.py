@@ -36,18 +36,24 @@ class TicTacToe:
         self.__board[position[0]][position[1]] = player
         self.__move_num +=1
         self.__current_turn = self.__current_turn=((self.__current_turn-2)%2)+1
-        return self.__check_state()
+        return self.check_state()
 
-    def __check_state(self):
+    def check_state(self,input_board=None):
         "searches for winner or tie"
+        if input_board==None:
+            board = self.__board
+        else:
+            assert len(input_board[0])==self.__size
+            board = input_board
+            
         #check vertical and horiz lines
         for i in range(self.__size):
-            if np.all(self.__board[0,i]==self.__board[:,i]) and self.__board[0,i] != 0: return self.__board[0,i]
-            if np.all(self.__board[i,0]==self.__board[i,:]) and self.__board[i,0] != 0: return self.__board[i,0]
+            if np.all(board[0,i]==board[:,i]) and board[0,i] != 0: return board[0,i]
+            if np.all(board[i,0]==board[i,:]) and board[i,0] != 0: return board[i,0]
             
         #check diagonals
-        if len(set([self.__board[i][i] for i in range(self.__size)]))==1 and self.__board[0,0]!=0: return self.__board[0,0]
-        if len(set([self.__board[i][self.__size-1-i] for i in range(self.__size)]))==1 and self.__board[0,-1]!=0: return self.__board[0,-1]
+        if len(set([board[i][i] for i in range(self.__size)]))==1 and board[0,0]!=0: return board[0,0]
+        if len(set([board[i][self.__size-1-i] for i in range(self.__size)]))==1 and board[0,-1]!=0: return board[0,-1]
 
         #check for full board
         if self.__move_num==self.__size**2: return 3
@@ -63,3 +69,5 @@ class TicTacToe:
     def get_size(self):
         return self.__size
     
+    def get_num_move(self):
+        return self.__move_num
