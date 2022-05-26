@@ -15,3 +15,4 @@ framework to create and compete agents in tictactoe.
 * Tree_Search
   * Explores complete state tree and plays optimal move.
   * Agent will win or draw against any possible opponent.
+  * Greater than human level
